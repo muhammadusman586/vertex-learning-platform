@@ -1,5 +1,7 @@
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+
 import { PageContainer } from "@/components/layout/page-frame";
-import { Icon, NavBar, type NavItem } from "@/components/ui";
+import { Button, Icon, NavBar, type NavItem } from "@/components/ui";
 
 export type SiteHeaderProps = {
   items?: NavItem[];
@@ -20,14 +22,27 @@ export function SiteHeader({ items, activeHref = "" }: SiteHeaderProps) {
           >
             <Icon name="bell" size={24} />
           </button>
-          {/* Placeholder until Clerk supplies the signed-in user. */}
-          <button
-            type="button"
-            aria-label="Account"
-            className="flex size-12 items-center justify-center rounded-full border border-rule bg-neutral-100 text-neutral-500 transition-colors outline-none hover:text-neutral-700 focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-          >
-            <Icon name="user" variant="filled" size={26} />
-          </button>
+          <Show when="signed-out">
+            <SignInButton mode="modal">
+              <Button variant="tertiary" size="md">
+                Sign in
+              </Button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <Button size="md">Sign up</Button>
+            </SignUpButton>
+          </Show>
+          <Show when="signed-in">
+            <UserButton
+              appearance={{
+                elements: {
+                  userButtonAvatarBox: "size-12",
+                  userButtonTrigger:
+                    "rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas",
+                },
+              }}
+            />
+          </Show>
         </div>
       </PageContainer>
     </header>
