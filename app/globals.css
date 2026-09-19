@@ -21,6 +21,8 @@
 
   /* --- Supporting ---------------------------------------------------- */
   --color-canvas: #fbf8f6;
+  /* Warm hairline used by the page frame, section rules and card dividers. */
+  --color-rule: #f1e8e2;
   --color-success: #22c55e;
   --color-lesson: #4f46e5;
   --color-lesson-bg: #eef0fe;
@@ -56,6 +58,14 @@ body {
 }
 
 /* --- Type scale ------------------------------------------------------ */
+
+/* Hero headline. Larger than Display 1, used only for a page's opening statement. */
+@utility text-display-hero {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 56px);
+  line-height: 1.18;
+  font-weight: 700;
+}
 @utility text-display-1 {
   font-family: var(--font-display);
   font-size: 48px;
@@ -120,4 +130,17 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* --- Decorative ------------------------------------------------------ */
+
+/* Diagonal hatch used by the page-frame rails. */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-rule) 0,
+    var(--color-rule) 1px,
+    transparent 1px,
+    transparent 13px
+  );
 }

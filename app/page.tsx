@@ -1,24 +1,22 @@
-import Link from "next/link";
-
-import { Logo } from "@/components/ui";
+import { BarBand } from "@/app/_components/bar-band";
+import { CourseSection } from "@/app/_components/course-section";
+import { Hero } from "@/app/_components/hero";
+import { UpdateStrip } from "@/app/_components/update-strip";
+import { PageFrame } from "@/components/layout/page-frame";
+import { SiteHeader } from "@/components/layout/site-header";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-8 px-6 py-16">
-      <Logo size={34} />
-      <div>
-        <h1 className="text-display-2 text-neutral-900 sm:text-display-1">Vertex</h1>
-        <p className="mt-4 text-body-lg text-neutral-500">
-          A learning platform with search that takes you to the exact moment a topic is
-          taught. The pages are still being built.
-        </p>
-      </div>
-      <Link
-        href="/design-system"
-        className="inline-flex h-11 w-fit items-center rounded-md bg-primary-500 px-4 font-sans text-base font-medium text-white transition-colors hover:bg-primary-600 outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
-      >
-        View the design system
-      </Link>
-    </main>
+    <PageFrame className="flex flex-col">
+      <SiteHeader />
+      <main className="flex flex-1 flex-col">
+        <Hero />
+        <CourseSection />
+        <div className="mt-auto">
+          <UpdateStrip />
+          <BarBand />
+        </div>
+      </main>
+    </PageFrame>
   );
 }

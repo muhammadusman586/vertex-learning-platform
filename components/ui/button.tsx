@@ -4,17 +4,19 @@ import { Icon, type IconName, type IconVariant } from "@/components/ui/icon";
 import { cn } from "@/lib/cn";
 
 export type ButtonVariant = "primary" | "secondary" | "tertiary" | "text";
-export type ButtonSize = "md" | "lg";
+export type ButtonSize = "md" | "lg" | "xl";
 
 const BASE =
-  "inline-flex h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md " +
+  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md " +
   "font-sans font-medium " +
   "transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary-400 " +
   "focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:cursor-not-allowed";
 
 const SIZES: Record<ButtonSize, string> = {
-  lg: "px-4 text-base",
-  md: "px-3 text-sm",
+  /** Hero call to action. Only used on a page's opening statement. */
+  xl: "h-15 gap-3 px-6 text-lg",
+  lg: "h-11 px-4 text-base",
+  md: "h-11 px-3 text-sm",
 };
 
 /**
@@ -45,6 +47,22 @@ const VARIANTS: Record<ButtonVariant, string> = {
   ),
 };
 
+/**
+ * The button's classes on their own, for elements that must not be a `<button>` —
+ * a call to action that navigates is a link, and links carry these same styles.
+ */
+export function buttonClassName({
+  variant = "primary",
+  size = "lg",
+  className,
+}: {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+} = {}) {
+  return cn(BASE, SIZES[size], VARIANTS[variant], className);
+}
+
 export type ButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -70,12 +88,16 @@ export function Button({
     <button
       type={type}
       data-state={forceHover ? "hover" : undefined}
-      className={cn(BASE, SIZES[size], VARIANTS[variant], className)}
+      className={buttonClassName({ variant, size, className })}
       {...props}
     >
       {children}
       {trailingIcon ? (
-        <Icon name={trailingIcon} variant={trailingIconVariant} size={16} />
+        <Icon
+          name={trailingIcon}
+          variant={trailingIconVariant}
+          size={size === "xl" ? 20 : 16}
+        />
       ) : null}
     </button>
   );

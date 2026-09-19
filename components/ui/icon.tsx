@@ -17,6 +17,8 @@ export type IconName =
   | "user"
   | "chevron-right"
   | "chevron-left"
+  | "arrow-right"
+  | "star"
   | "chevron-down"
   | "external-link"
   | "lock"
@@ -169,6 +171,29 @@ const GLYPHS: Record<IconName, Glyph> = {
     filled: <path d="m9 5 7 7-7 7" strokeWidth="3" />,
   },
   "chevron-left": { outline: <path d="m15 5-7 7 7 7" /> },
+  "arrow-right": {
+    outline: (
+      <>
+        <path d="M4 12h15" />
+        <path d="m13 6 6 6-6 6" />
+      </>
+    ),
+  },
+  star: {
+    outline: (
+      <path
+        d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8L12 3.5Z"
+        strokeLinejoin="round"
+      />
+    ),
+    filled: (
+      <path
+        d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8L12 3.5Z"
+        fill="currentColor"
+        strokeLinejoin="round"
+      />
+    ),
+  },
   "chevron-down": { outline: <path d="m6 9 6 6 6-6" /> },
   "external-link": {
     outline: (
