@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored skill reference apps - not project source.
+    "agent/**",
+    ".agents/**",
+    ".claude/**",
   ]),
 ]);
 
